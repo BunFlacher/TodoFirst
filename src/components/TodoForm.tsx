@@ -7,12 +7,10 @@ const TodoForm: FC<{create: any}> = ({create}) => {
 
     const addNewPost = (e: any) => {
         e.preventDefault()
-        const newPost = {
-            ...post, id: Date.now()
-        }
-        create(newPost)
+        create(post) // отправляем title и description
         setPost({title: "", description: ""})
     }
+
     return(
         <form>
             <Input

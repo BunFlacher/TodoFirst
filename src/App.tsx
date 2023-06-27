@@ -11,7 +11,10 @@ function App() {
     {id: 3, title: "JavaScript3", description: "hello its JavaScript3"},
   ])
   const createNewPost = (NewPost: TodoModel) => {
-    setTodos([...todos, NewPost])
+    const Post = {
+      ...NewPost, id: todos[todos.length - 1].id + 1  // title и description находятся в NewPost и дописываем id  
+    }
+    setTodos([...todos, Post])
   }
   const removePost = (todo: TodoModel) => {
     setTodos(todos.filter(t => t.id !== todo.id))
