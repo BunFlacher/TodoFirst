@@ -10,6 +10,9 @@ function App() {
     {id: 2, title: "JavaScript2", description: "hello its JavaScript2"},
     {id: 3, title: "JavaScript3", description: "hello its JavaScript3"},
   ])
+  // получаем последний объект в массиве и достаем id из него
+  const lastId = todos[todos.length - 1].id
+
   const createNewPost = (NewPost: TodoModel) => {
     setTodos([...todos, NewPost])
   }
@@ -19,7 +22,7 @@ function App() {
 
   return (
     <div className='App'>
-      <TodoForm create={createNewPost}/>
+      <TodoForm create={createNewPost} lastId={lastId}/>
       <hr style={{margin: "15px 0"}}></hr>
       <TodoList remove={removePost} todos={todos} title="Todo Tasks"/>
     </div>

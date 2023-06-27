@@ -1,31 +1,32 @@
-import {useState, FC} from "react"
+import { useState, FC } from "react"
 import Input from "./UI/input/Input"
 import Button from "./UI/button/Button"
+import TodoModel from "./TodoModel"
 
-const TodoForm: FC<{create: any}> = ({create}) => {
-    const [post, setPost] = useState({title:'', description:''})
+const TodoForm: FC<{ create: (newPost:TodoModel) => void, lastId: number }> = ({ create, lastId }) => {
+    const [post, setPost] = useState({ title: '', description: '' })
 
     const addNewPost = (e: any) => {
         e.preventDefault()
         const newPost = {
-            ...post, id: Date.now()
+            ...post, id: lastId + 1
         }
         create(newPost)
-        setPost({title: "", description: ""})
+        setPost({ title: "", description: "" })
     }
-    return(
+    return (
         <form>
             <Input
-                onChange={e => setPost({...post, title:e.target.value})}
+                onChange={e => setPost({ ...post, title: e.target.value })}
                 value={post.title}
                 placeholder="Input Title"
             />
             <Input
-                onChange={e => setPost({...post, description: e.target.value})}
+                onChange={e => setPost({ ...post, description: e.target.value })}
                 value={post.description}
                 placeholder="Input Description"
             />
-            <Button style={{margin: "5px 0"}} onClick={addNewPost}>
+            <Button style={{ margin: "5px 0" }} onClick={addNewPost}>
                 Create Task
             </Button>
         </form>
