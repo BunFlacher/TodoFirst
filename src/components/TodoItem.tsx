@@ -1,18 +1,24 @@
 import TodoModel from "./TodoModel"
-import {FC} from "react"
+import {FC, useState} from "react"
 import Button from "./UI/button/Button"
+import TodoItemEdit from "./TodoItemEdit"
 
-const TodoItem: FC<{ todo: TodoModel, remove: (todo: TodoModel) => void}> = ({todo, remove}) => {
+const TodoItem: FC<{ todo: TodoModel, remove: any}> = ({todo, remove}) => {
+    const [visible, setVisible] = useState(false)
+
     return(
         <div className="todo">
-            <div>
-                <strong>{todo.id} {todo.title}</strong>
-                <div>
+            <TodoItemEdit visible={visible} setVisible={setVisible} todo={todo}/>
+            <div style={{backgroundColor: "rgb(255,255,255)", marginRight: "5px"}}>
+                <strong style={{backgroundColor: "rgb(255,255,255)"}}>{todo.id}. {todo.title}</strong>
+                <div style={{ backgroundColor: "rgb(255,255,255)"}}>
                     {todo.description}
                 </div>
             </div>
-            <div>
-                <Button onClick={() => remove(todo)}>Удалить</Button>
+            <div style={{display: "flex", background: "rgb(255,255,255)"}}>
+                <Button style={{marginRight: "15px"}} onClick={() => setVisible(true)}>Edit</Button>
+                <div style={{marginLeft: "5px"}}></div>
+                <Button onClick={() => remove(todo)}>Delete</Button>
             </div>
         </div>
     )
