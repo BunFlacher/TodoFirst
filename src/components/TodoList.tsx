@@ -1,19 +1,11 @@
 import TodoItem from "./TodoItem"
 import TodoModel from "./TodoModel"
+import TodoListTitle from "./TodoListTitle"
 
-const TodoList: React.FC<{todos: TodoModel[], title: string, remove: (todo: TodoModel) => void}> = ({todos, title, remove}) => {
-    if(!todos.length) {
-        return(
-            <h1 style={{textAlign: "center", color: "rgb(255,255,255)"}}>
-                No one Task
-            </h1>
-        )
-    }
+const TodoList: React.FC<{todos: TodoModel[], remove: (todo: TodoModel) => void}> = ({todos, remove}) => {
     return(
         <div>
-            <h1 style={{textAlign: "center", color: "rgb(255,255,255)"}}>
-                {title}
-            </h1>
+            <TodoListTitle todos={todos}/>
             <div>
                 {todos.map((todo: TodoModel) =>
                     <TodoItem remove={remove} todo={todo} key={todo.id}/>

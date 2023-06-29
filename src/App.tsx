@@ -76,8 +76,7 @@ function App() {
         todos={searchTerm 
           ? searchResults
           : todos
-          } 
-        title="Todo Tasks"
+          }
       />
     </div>
   );
